@@ -2,7 +2,7 @@
 
 import blessed from 'blessed';
 import open from 'open';
-import { terapia, pariendoTierra } from './plain.js';
+import { terapia } from './plain.js';
 import { proyectos } from './projects.js';
 
 // this code is not nice, it's awful, do not inspect it :P
@@ -44,35 +44,6 @@ let main = blessed.box({
     "{magenta-bg}{white-fg}{bold} -- Hero Protagonist's Letter-Bomb -- FSM --{/}\n",
 });
 
-let next = blessed.button({
-  parent: main,
-  shadow: true,
-  left: 'center',
-  top: '80%',
-  width: '20%',
-  height: '12%',
-  align: 'center',
-  style: {
-    bg: 'black',
-    fg: 'white',
-    hover: {
-      bg: 'red',
-    },
-    focus: {
-      border: {
-        fg: 'yellow',
-      },
-    },
-  },
-
-  border: 'line',
-  tags: true,
-  focusable: true,
-  vi: true,
-  clickable: true,
-  content: '{white-fg}{bold} --Siguiente-- {/}',
-});
-
 let info = blessed.text({
   parent: main,
   shadow: true,
@@ -96,6 +67,29 @@ let info = blessed.text({
   - Comfortable with Peer-Reviewing and documenting complex implementations.
   - Adapt with ease into large codebases.
   - Actually enjoy programming and Computer Science :)`,
+});
+
+let next = blessed.button({
+  parent: main,
+  shadow: true,
+  left: '70%',
+  top: '5%',
+  width: '20%',
+  height: '10%',
+  align: 'center',
+  style: {
+    bg: 'black',
+    transparent: true,
+    hover: {
+      bg: 'red',
+    },
+  },
+  padding: false,
+  tags: true,
+  focusable: true,
+  vi: true,
+  clickable: true,
+  content: '{white-fg}{bold} --Next-- {/}',
 });
 
 let poeta = blessed.text({
@@ -157,6 +151,7 @@ function handleButton() {
       table.hidden = false;
       info.destroy();
       table.focus();
+      screen.render();
       break;
     case 1:
       table.destroy();
@@ -166,6 +161,7 @@ function handleButton() {
     case 2:
       main.destroy();
       bg.focus();
+      screen.render();
   }
   slide++;
 }
