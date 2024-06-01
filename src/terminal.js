@@ -90,7 +90,7 @@ let info = blessed.text({
   - Experience with Relational and No-SQL Databases, using ORM's and validation techniques.
   - SOLID fundamentals. Actually use TTD.
   - Familiar in both Front and Backend, from CSS to SSR.
-  - Good at quickly finding a working solution to any problem, and then re-evaluating and refactor over it.
+  - Good at quickly finding a working solution to problems, reevaluating and refactor after.
   - Employ data scraping and modeling, with static and dynamic approaches.
   - Ability to communicate technical concepts to non-technical audiences.
   - Comfortable with Peer-Reviewing and documenting complex implementations.
