@@ -159,6 +159,7 @@ function handleButton() {
       break;
     case 0:
       table.hidden = false;
+      table.focus();
       info.hidden = true;
       poeta.hidden = true;
       screen.render();
