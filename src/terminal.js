@@ -114,7 +114,7 @@ let poeta = blessed.text({
   So... you are curious about the background?
   Eeehh... Well...
   Antes que todo:
-  POETA Y ESCRITOR.`,
+  ESCRITOR Y POETA.`,
 });
 
 let table = blessed.list({
