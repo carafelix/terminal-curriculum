@@ -142,30 +142,40 @@ table.on('select', (item, index) => {
   open(proyectos.filter((p) => p.name === item.content)[0].url);
 });
 
-let slide = 0;
-next.on('press', handleButton);
-next.on('click', handleButton);
+let slide = -1;
+
+next.on('click', () => {
+  handleButton();
+  slide++;
+});
 let snowcrash;
 function handleButton() {
   switch (slide) {
+    case -1:
+      info.hidden = false;
+      table.hidden = true;
+      poeta.hidden = true;
+      screen.render();
+      break;
     case 0:
       table.hidden = false;
-      info.destroy();
-      table.focus();
+      info.hidden = true;
+      poeta.hidden = true;
       screen.render();
       break;
     case 1:
-      table.destroy();
+      table.hidden = true;
+      info.hidden = true;
       poeta.hidden = false;
+      main.hidden = false;
       screen.render();
       break;
     case 2:
-      main.destroy();
+      main.hidden = true;
       bg.focus();
       screen.render();
       break;
   }
-  slide++;
 }
 const getSnowcrash = (width, height) => {
   const layout = blessed.layout({
@@ -262,13 +272,24 @@ screen.key(['escape', 'q', 'C-c'], () => {
 });
 
 screen.render();
-next.focus();
 
 async function sleep(n) {
   return new Promise((resolve) => {
     setTimeout(resolve, n);
   });
 }
+screen.key('left', () => {
+  slide--;
+  if (slide < -1) slide = -1;
+  handleButton();
+  screen.render();
+});
+screen.key('right', () => {
+  slide++;
+  if (slide > 2) slide = 2;
+  handleButton();
+  screen.render();
+});
 
 process.on('uncaughtException', (error) => {
   screen.destroy();
