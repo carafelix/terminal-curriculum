@@ -233,11 +233,45 @@ screen.key(['escape', 'q', 'C-c'], () => {
     snowcrash = getSnowcrash(screen.width, screen.height);
     screen.render();
     slide++;
-    if (slide > 20) {
-      throw new Error('SNOW CRASH');
+    if (slide > 15) {
+      snowcrash = blessed.bigtext({
+        parent: screen,
+        content: 'SNOWCRASH',
+        top: 'center',
+        lef: 'center',
+        shrink: true,
+        width: 'shrink',
+        // height: '80%',
+        height: 'shrink',
+        // width: 'shrink',
+        border: 'line',
+        fch: ' ',
+        ch: '\u2592',
+        style: {
+          bold: true,
+        },
+      });
+      if (slide > 22) {
+        clearInterval();
+        screen.destroy();
+        throw new Error('SNOW CRASH', { cause: 'METADEATH' });
+      }
+      screen.render();
     }
   }, 50);
 });
 
 screen.render();
 next.focus();
+
+async function sleep(n) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, n);
+  });
+}
+
+process.on('uncaughtException', (error) => {
+  screen.destroy();
+  clearInterval();
+  throw new Error('SNOW CRASH', { cause: 'METADEATH' });
+});
