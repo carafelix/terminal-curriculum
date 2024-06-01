@@ -1,6 +1,6 @@
 {
-  "name": "hero-protagonist-letter",
-  "version": "0.1.6",
+  "name": "hero-protagonist",
+  "version": "0.1.7",
   "description": "",
   "main": "src/terminal.js",
   "bin": "src/terminal.js",
