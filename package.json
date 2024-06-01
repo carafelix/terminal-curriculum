@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/terminal.js",
   "bin": {
-    "npx-command": "index.js"
+    "npx-command": "src/terminal.js"
   },
   "dependencies": {
     "@types/blessed": "^0.1.25",
