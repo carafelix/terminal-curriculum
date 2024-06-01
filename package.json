@@ -1,4 +1,11 @@
 {
+  "name": "hero-protagonist-letter",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/terminal.js",
+  "bin": {
+    "npx-command": "index.js"
+  },
   "dependencies": {
     "@types/blessed": "^0.1.25",
     "blessed": "^0.1.81",
@@ -7,5 +14,8 @@
   "scripts": {
     "debug": "node --nolazy --inspect-brk=9229 src/terminal.js"
   },
-  "type": "module"
+  "type": "module",
+  "keywords": ["cv", "curriculum", "letter"],
+  "author": "Hero Protagonist",
+  "license": "ISC"
 }

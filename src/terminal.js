@@ -39,7 +39,7 @@ let main = blessed.box({
   border: 'line',
   tags: true,
   content:
-    "{magenta-bg}{white-fg}{bold} -- Hero Protagonist's Curriculum -- FSM --{/}\n",
+    "{magenta-bg}{white-fg}{bold} -- Hero Protagonist's Letter-Bomb -- FSM --{/}\n",
 });
 
 let next = blessed.button({
@@ -103,13 +103,15 @@ let poeta = blessed.text({
   left: 'center',
   top: 'center',
   align: 'center',
+  padding: 1,
   style: {
     fg: 'white',
   },
   border: 'line',
   content: `
-  So... you are curious about the background? Eeehh...
-  Well... antes que todo:
+  So... you are curious about the background?
+  Eeehh... Well...
+  Antes que todo:
   POETA Y ESCRITOR.`,
 });
 
