@@ -23,6 +23,7 @@ let bg = blessed.scrollablebox({
   style: {
     ft: 'black',
   },
+  scrollable: true,
   content: terapia,
 });
 
@@ -144,7 +145,7 @@ table.on('select', (item, index) => {
 let slide = 0;
 next.on('press', handleButton);
 next.on('click', handleButton);
-
+let snowcrash;
 function handleButton() {
   switch (slide) {
     case 0:
@@ -162,10 +163,53 @@ function handleButton() {
       main.destroy();
       bg.focus();
       screen.render();
+      break;
   }
   slide++;
 }
+const getSnowcrash = (width, height) => {
+  const layout = blessed.layout({
+    parent: screen,
+    top: 'center',
+    left: 'center',
+    width: '100%',
+    height: '100%',
+    padding: '100%',
+  });
 
+  for (let i = 0; i < width; i++) {
+    for (let j = 0; j < height; j++) {
+      const color = (i + j) % 2 === 0 ? 'black' : 'white';
+      blessed.box({
+        parent: layout,
+        width: 1 + Math.floor(Math.random() * 2),
+        height: 1 + Math.floor(Math.random() * 2),
+        border: false,
+        style: {
+          bg: color,
+          fg: 'black',
+        },
+        padding: false,
+        content: getGibbarish(2, color),
+      });
+    }
+  }
+  return layout;
+};
+
+const UNICODE_LIMIT = 127 - 33;
+function getGibbarish(n) {
+  let content = '';
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      const char = String.fromCharCode(
+        Math.floor(Math.random() * 33 + UNICODE_LIMIT)
+      );
+      content += char;
+    }
+  }
+  return content;
+}
 bg.key('up', () => {
   bg.scroll(-10);
   screen.render();
@@ -175,9 +219,24 @@ bg.key('down', () => {
   bg.scroll(10);
   screen.render();
 });
+bg.on('wheelup', () => {
+  bg.scroll(-4);
+  screen.render();
+});
 
-screen.key('q', () => {
-  return screen.destroy();
+bg.on('wheeldown', () => {
+  bg.scroll(4);
+  screen.render();
+});
+screen.key(['escape', 'q', 'C-c'], () => {
+  setInterval(() => {
+    snowcrash = getSnowcrash(screen.width, screen.height);
+    screen.render();
+    slide++;
+    if (slide > 20) {
+      throw new Error('SNOW CRASH');
+    }
+  }, 50);
 });
 
 screen.render();
