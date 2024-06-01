@@ -82,19 +82,18 @@ let info = blessed.text({
     fg: 'white',
   },
   border: 'line',
-  content: `
-  --Skills--
+  content: `--Skills--
   
   - Strong programming skills in Typescript.
   - Experience with Relational and No-SQL Databases, using ORM's and validation techniques.
   - SOLID fundamentals. Actually use TTD.
   - Familiar in both Front and Backend, from CSS to SSR.
-  - Good at quickly finding initials solutions to problems, and then re-evaluating and refactor over it.
-  - Efficient at data mining and modeling with static and dynamic approaches.
+  - Good at quickly finding a working solution to any problem, and then re-evaluating and refactor over it.
+  - Employ data scraping and modeling, with static and dynamic approaches.
   - Ability to communicate technical concepts to non-technical audiences.
   - Comfortable with Peer-Reviewing and documenting complex implementations.
   - Adapt with ease into large codebases.
-  - Really enjoy Computer Science :)`,
+  - Actually enjoy programming and Computer Science :)`,
 });
 
 let poeta = blessed.text({
