@@ -1,11 +1,9 @@
 {
   "name": "hero-protagonist-letter",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "",
   "main": "src/terminal.js",
-  "bin": {
-    "npx-command": "src/terminal.js"
-  },
+  "bin": "src/terminal.js",
   "dependencies": {
     "@types/blessed": "^0.1.25",
     "blessed": "^0.1.81",

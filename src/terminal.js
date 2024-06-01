@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import blessed from 'blessed';
 import open from 'open';
 import { terapia, pariendoTierra } from './plain.js';
