@@ -1,10 +1,16 @@
 # little terminal cv
 
-Try it yourself, would be more fun than a gif
+Try it yourself, would be more fun than a gif. Navigation and item selection
+it's done trough the arrow keys and enter, respectively. The mouse also works.
 
 ```bash
 npx hero-protagonist
 ```
+
+## Requirements
+
+- node =< 18
+- npm
 
 ![](demo.gif)
 

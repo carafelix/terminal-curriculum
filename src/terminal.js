@@ -4,9 +4,15 @@ import blessed from 'blessed';
 import open from 'open';
 import { terapia } from './plain.js';
 import { proyectos } from './projects.js';
+import { infoContent, langButtonString, poetaString } from './content.js';
 
 // this code is not nice, it's awful, do not inspect it :P
 
+// globals
+let slide = -1;
+let snowcrash;
+
+// slides
 let screen;
 screen = blessed.screen({
   smartCSR: true,
@@ -34,7 +40,7 @@ let main = blessed.box({
   left: 'center',
   top: 'center',
   width: '90%',
-  height: '90%',
+  height: '95%',
   style: {
     bg: 'blue',
     fg: 'white',
@@ -56,41 +62,7 @@ let info = blessed.text({
     fg: 'white',
   },
   border: 'line',
-  content: `--Skills--
-  
-  - Strong programming skills in Typescript.
-  - Experience with Relational and No-SQL Databases, using ORM's and validation techniques.
-  - SOLID fundamentals. Actually use TTD.
-  - Familiar in both Front and Backend, from CSS to SSR.
-  - Good at quickly finding a working solution to problems, reevaluating and refactor after.
-  - Employ data scraping and modeling, with static and dynamic approaches.
-  - Ability to communicate technical concepts to non-technical audiences.
-  - Comfortable with Peer-Reviewing and documenting complex implementations.
-  - Adapt with ease into large codebases.
-  - Actually enjoy programming and Computer Science :)`,
-});
-
-let next = blessed.button({
-  parent: main,
-  shadow: true,
-  left: '70%',
-  top: '5%',
-  width: '20%',
-  height: '10%',
-  align: 'center',
-  style: {
-    bg: 'black',
-    transparent: true,
-    hover: {
-      bg: 'red',
-    },
-  },
-  padding: false,
-  tags: true,
-  focusable: true,
-  vi: true,
-  clickable: true,
-  content: '{white-fg}{bold} --Next-- {/}',
+  content: infoContent.en,
 });
 
 let poeta = blessed.text({
@@ -105,11 +77,7 @@ let poeta = blessed.text({
     fg: 'white',
   },
   border: 'line',
-  content: `
-  So... you are curious about the background?
-  Eeehh... Well...
-  Antes que todo:
-  ESCRITOR Y POETA.`,
+  content: poetaString.en,
 });
 
 let table = blessed.list({
@@ -138,46 +106,54 @@ let table = blessed.list({
   items: proyectos.map((m) => m.name),
 });
 
-table.on('select', (item, index) => {
-  open(proyectos.filter((p) => p.name === item.content)[0].url);
+let language = blessed.button({
+  parent: main,
+  shadow: true,
+  shrink: true,
+  left: '64%',
+  top: '5%',
+  width: 'shrink',
+  height: 'shrink',
+  align: 'center',
+  style: {
+    bg: 'cyan',
+    transparent: true,
+    hover: {
+      bg: 'red',
+    },
+  },
+  padding: false,
+  tags: true,
+  vi: true,
+  clickable: true,
+  content: '{white-fg}{bold} --EN-- {/}',
 });
 
-let slide = -1;
-
-next.on('click', () => {
-  handleButton();
-  slide++;
+let next = blessed.button({
+  parent: main,
+  shrink: true,
+  shadow: true,
+  left: '75%',
+  top: '5%',
+  width: 'shrink',
+  height: 'shrink',
+  align: 'center',
+  style: {
+    bg: 'cyan',
+    transparent: true,
+    hover: {
+      bg: 'red',
+    },
+  },
+  padding: false,
+  tags: true,
+  vi: true,
+  clickable: true,
+  content: '{white-fg}{bold} --Next-- {/}',
 });
-let snowcrash;
-function handleButton() {
-  switch (slide) {
-    case -1:
-      info.hidden = false;
-      table.hidden = true;
-      poeta.hidden = true;
-      screen.render();
-      break;
-    case 0:
-      table.hidden = false;
-      table.focus();
-      info.hidden = true;
-      poeta.hidden = true;
-      screen.render();
-      break;
-    case 1:
-      table.hidden = true;
-      info.hidden = true;
-      poeta.hidden = false;
-      main.hidden = false;
-      screen.render();
-      break;
-    case 2:
-      main.hidden = true;
-      bg.focus();
-      screen.render();
-      break;
-  }
-}
+
+// dynamic slide
+
 const getSnowcrash = (width, height) => {
   const layout = blessed.layout({
     parent: screen,
@@ -207,7 +183,38 @@ const getSnowcrash = (width, height) => {
   }
   return layout;
 };
+// slide controller
+function handleSlides() {
+  switch (slide) {
+    case -1:
+      info.hidden = false;
+      table.hidden = true;
+      poeta.hidden = true;
+      screen.render();
+      break;
+    case 0:
+      table.hidden = false;
+      table.focus();
+      info.hidden = true;
+      poeta.hidden = true;
+      screen.render();
+      break;
+    case 1:
+      table.hidden = true;
+      info.hidden = true;
+      poeta.hidden = false;
+      main.hidden = false;
+      screen.render();
+      break;
+    case 2:
+      main.hidden = true;
+      bg.focus();
+      screen.render();
+      break;
+  }
+}
 
+// utils function
 const UNICODE_LIMIT = 127 - 33;
 function getGibbarish(n) {
   let content = '';
@@ -221,6 +228,29 @@ function getGibbarish(n) {
   }
   return content;
 }
+
+// listeners
+
+// navigation
+screen.key('left', () => {
+  slide--;
+  if (slide < -1) slide = -1;
+  handleSlides();
+  screen.render();
+});
+screen.key('right', () => {
+  slide++;
+  if (slide > 2) slide = 2;
+  handleSlides();
+  screen.render();
+});
+
+next.on('click', () => {
+  slide++;
+  handleSlides();
+});
+
+// poem scroll
 bg.key('up', () => {
   bg.scroll(-10);
   screen.render();
@@ -239,6 +269,28 @@ bg.on('wheeldown', () => {
   bg.scroll(4);
   screen.render();
 });
+
+// open browser on list
+table.on('select', (item, index) => {
+  open(proyectos.filter((p) => p.name === item.content)[0].url);
+});
+
+// language set
+language.on('click', () => {
+  if (language.content === langButtonString.en) {
+    language.content = langButtonString.es;
+    info.content = infoContent.es;
+    poeta.content = poetaString.es;
+    screen.render();
+  } else {
+    language.content = langButtonString.en;
+    info.content = infoContent.en;
+    poeta.content = poetaString.en;
+    screen.render();
+  }
+});
+
+// quit
 screen.key(['escape', 'q', 'C-c'], () => {
   setInterval(() => {
     snowcrash = getSnowcrash(screen.width, screen.height);
@@ -262,7 +314,7 @@ screen.key(['escape', 'q', 'C-c'], () => {
           bold: true,
         },
       });
-      if (slide > 22) {
+      if (slide > 20) {
         clearInterval();
         screen.destroy();
         throw new Error('SNOW CRASH', { cause: 'METADEATH' });
@@ -272,28 +324,12 @@ screen.key(['escape', 'q', 'C-c'], () => {
   }, 50);
 });
 
-screen.render();
-
-async function sleep(n) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, n);
-  });
-}
-screen.key('left', () => {
-  slide--;
-  if (slide < -1) slide = -1;
-  handleButton();
-  screen.render();
-});
-screen.key('right', () => {
-  slide++;
-  if (slide > 2) slide = 2;
-  handleButton();
-  screen.render();
-});
+// Exceptions
 
 process.on('uncaughtException', (error) => {
   screen.destroy();
   clearInterval();
   throw new Error('SNOW CRASH', { cause: 'METADEATH' });
 });
+
+screen.render();
