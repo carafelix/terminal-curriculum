@@ -108,6 +108,7 @@ let table = blessed.list({
 let language = blessed.button({
   parent: main,
   shrink: true,
+  shadow: true,
   left: '64%',
   top: '5%',
   width: 'shrink',
@@ -130,6 +131,7 @@ let language = blessed.button({
 let next = blessed.button({
   parent: main,
   shrink: true,
+  shadow: true,
   left: '75%',
   top: '5%',
   width: 'shrink',
