@@ -17,8 +17,8 @@ export const infoContent = {
   - Fuertes conocimientos practicos en Typescript.
   - Experiencia trabajando con bases de datos relacionales y No-SQL, empleando ORM's y tecnicas de validacion.
   - Fundamentos SOLID y Test-Driven Design.
-  - Familiarizado tanto en Front como en Backend, desde CSS hasta SSR y diseño de RESTful API's.
-  - Rapido para encontrar soluciones iniciales, sea cual sea el problema, para luego re-evaluar y alcanzar un diseño de calidad.
+  - Familiarizado tanto con Front como Backend, desde CSS hasta SSR y creacion de API's RESTful.
+  - Eficaz para encontrar soluciones iniciales, sea cual sea el problema, e iterar hasta alcanzar un producto de calidad.
   - Experiencia en tecnicas de mineria de datos e interpretacion.
   - Capacidad para comunicar conceptos tecnicos a cualquier clase de audiencia.
   - Habituado a workflows basados en Peer-Reviewing y a documentar.
@@ -36,7 +36,8 @@ export const poetaString = {
   Eeehh... Well... You already got here... You'll know how to get there too.
   Antes que todo:
   ESCRITOR Y POETA.`,
-  es: `Asi que has llegado hasta aqui... Sobre el texto del fondo.
+  es: `
+  Asi que has llegado hasta aqui... Sobre el texto del fondo.
   Bueno... soy, primero, escritor y poeta. 
   Y si, las faltas de ortografia son porque las vocales tildadas no forman parte del ASCII.
   Disfruta el Metaverso.`,
