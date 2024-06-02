@@ -21,7 +21,6 @@ screen = blessed.screen({
 
 let bg = blessed.scrollablebox({
   parent: screen,
-  shadow: true,
   left: 0,
   top: 0,
   right: 0,
@@ -108,7 +107,6 @@ let table = blessed.list({
 
 let language = blessed.button({
   parent: main,
-  shadow: true,
   shrink: true,
   left: '64%',
   top: '5%',
@@ -132,7 +130,6 @@ let language = blessed.button({
 let next = blessed.button({
   parent: main,
   shrink: true,
-  shadow: true,
   left: '75%',
   top: '5%',
   width: 'shrink',
@@ -190,6 +187,11 @@ function handleSlides() {
       info.hidden = false;
       table.hidden = true;
       poeta.hidden = true;
+      next.top = '5%';
+      language.top = '5%';
+      next.left = '75%';
+      language.left = '64%';
+
       screen.render();
       break;
     case 0:
@@ -197,6 +199,10 @@ function handleSlides() {
       table.focus();
       info.hidden = true;
       poeta.hidden = true;
+      next.top = '20%';
+      language.top = '20%';
+      next.left = '75%';
+      language.left = '64%';
       screen.render();
       break;
     case 1:
@@ -204,6 +210,8 @@ function handleSlides() {
       info.hidden = true;
       poeta.hidden = false;
       main.hidden = false;
+      next.left = '61%';
+      language.left = '50%';
       screen.render();
       break;
     case 2:
