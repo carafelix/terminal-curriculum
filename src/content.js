@@ -27,8 +27,8 @@ export const infoContent = {
   `,
 };
 export const langButtonString = {
-  en: '{white-fg}{bold} --EN-- {/}',
-  es: '{white-fg}{bold} --ES-- {/}',
+  en: "{white-fg}{bold} --EN-- {/}",
+  es: "{white-fg}{bold} --ES-- {/}",
 };
 export const poetaString = {
   en: `
