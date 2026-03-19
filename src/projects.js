@@ -1,5 +1,9 @@
 export const proyectos = [
     {
+        name: 'Personal Website',
+        url: 'https://heroprotagonist.is-a.dev',
+    },
+    {
         name: 'Pandiff - VScode Extension',
         url: 'https://marketplace.visualstudio.com/items?itemName=HeroProtagonist.pandiff-vscode',
     },
@@ -34,9 +38,5 @@ export const proyectos = [
     {
         name: 'Poesia.dev - Public Poetry API, NPL research and analysis tools. (WIP)',
         url: 'https://poesia.dev',
-    },
-    {
-        name: 'Personal Website',
-        url: 'https://heroprotagonist.is-a.dev',
-    },
+    }, 
 ]
